@@ -1,0 +1,2 @@
+rootProject.name='CustomAlertDialogBox'
+include ':app'
