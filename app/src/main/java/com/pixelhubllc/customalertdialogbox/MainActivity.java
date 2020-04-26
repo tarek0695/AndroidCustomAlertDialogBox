@@ -23,26 +23,32 @@ public class MainActivity extends AppCompatActivity {
         alertTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_layout,null);
+                final AlertDialog builder = new AlertDialog.Builder(MainActivity.this).create();
+                View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_layout, null);
 
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this, "Thank you", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                TextView canceTv, clearTv;
+                canceTv = view.findViewById(R.id.cancel_tv);
+                clearTv = view.findViewById(R.id.clear_tv);
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                canceTv.setOnClickListener(new View.OnClickListener() {
+                                               @Override
+                                               public void onClick(View v) {
+                                                   Toast.makeText(MainActivity.this, "Cancel Clicked!", Toast.LENGTH_SHORT).show();
+                                                   builder.dismiss();
+                                               }
+                                           }
+                );
+
+                clearTv.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this, "Never Mind!", Toast.LENGTH_SHORT).show();
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "Clear clicked!", Toast.LENGTH_SHORT).show();
+                        builder.dismiss();
                     }
                 });
 
                 builder.setView(view);
                 builder.show();
-
             }
         });
     }
